@@ -16,13 +16,28 @@
     table.dataTable tbody tr.odd {
         background-color:#eee;
     }
+    table.dataTable thead th,
+    table.dataTable thead td,
+    table.dataTable tbody td {
+        padding: 5px;
+    }
     </style>
     <script type="text/javascript">
     $(window).load(function() {
         $(document).ready(function() {
             $('#example').DataTable({
-                paging: false,
-                "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                'paging': false,
+                'autoWidth': false,
+                'columnDefs': [
+                {
+                    'targets': 0,
+                    'width': '155px'
+                },
+                {
+                    'targets': 'npc',
+                    'width': '90px'
+                }],
+                'fnRowCallback': function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                     $('td', nRow).each(function() {
                         if ($(this).html() == '5') {
                             $(this).css('background-color', '#afa');

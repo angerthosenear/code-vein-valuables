@@ -13,12 +13,25 @@
     body {
         padding: 10px;
     }
+    table.dataTable tbody tr.odd {
+        background-color:#eee;
+    }
     </style>
     <script type="text/javascript">
     $(window).load(function() {
         $(document).ready(function() {
             $('#example').DataTable({
-                paging: false
+                paging: false,
+                "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                    $('td', nRow).each(function() {
+                        if ($(this).html() == '5') {
+                            $(this).css('background-color', '#afa');
+                        }
+                        if ($(this).html() == '0') {
+                            $(this).css('background-color', '#faa');
+                        }
+                    })
+                }
             });
         });
     });
